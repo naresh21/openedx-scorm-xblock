@@ -410,6 +410,8 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         context = {"result": "success"}
         if lesson_score is not None and lesson_score > self.lesson_score:
             self.lesson_score = lesson_score
+            if self.has_score:
+                self.publish_grade()
             context.update({"grade": self.get_grade()})
         if completion_percent is not None:
             self.emit_completion(completion_percent)
@@ -420,9 +422,6 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
             self.success_status = success_status
         if completion_status == "completed":
             self.emit_completion(1)
-        if success_status or completion_status == "completed":
-            if self.has_score:
-                self.publish_grade()
 
         return context
 

@@ -5,8 +5,8 @@
 
     {% if scorm_xblock.has_score %}
     <p>
-        (<span class="grade">{{ grade|floatformat }}</span>/{{ scorm_xblock.weight|floatformat }} {% trans "points" %})
-        <span class="completion-status">{% trans completion_status %}</span>
+        {% trans "Points" %})
+        <span class="grade">{{ grade }} %</span>
     </p>
     {% endif %}
 

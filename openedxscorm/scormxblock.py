@@ -179,7 +179,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         student_context = {
             "index_page_url": self.index_page_url,
             "completion_status": self.lesson_status,
-            "grade": round(self.get_grade() * 100, 2),
+            "grade": round(self.get_grade() * 100),
             "can_view_student_reports": self.can_view_student_reports,
             "scorm_xblock": self,
         }

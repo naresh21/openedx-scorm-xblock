@@ -124,7 +124,12 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
     # https://scorm.com/scorm-explained/technical-scorm/run-time/
     scorm_data = Dict(scope=Scope.user_state, default={})
 
-    icon_class = String(default="video", scope=Scope.settings)
+    icon_class = String(
+        display_name=_("Icon"),
+        help=_("Select icon for the lesson"),
+        default="video",
+        scope=Scope.settings
+    )
     width = Integer(
         display_name=_("Display width (px)"),
         help=_("Width of iframe (default: 100%)"),
@@ -212,6 +217,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
             "field_width": self.fields["width"],
             "field_height": self.fields["height"],
             "field_popup_on_launch": self.fields["popup_on_launch"],
+            "field_icon_class": self.fields["icon_class"],
             "scorm_xblock": self,
         }
         studio_context.update(context or {})
@@ -236,7 +242,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         self.has_score = request.params["has_score"] == "1"
         self.weight = parse_float(request.params["weight"], 1)
         self.popup_on_launch = request.params["popup_on_launch"] == "1"
-        self.icon_class = "problem" if self.has_score else "video"
+        self.icon_class = request.params["icon_class"]
 
         response = {"result": "success", "errors": []}
         if not hasattr(request.params["file"], "file"):

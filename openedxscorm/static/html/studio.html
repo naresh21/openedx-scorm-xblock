@@ -14,14 +14,15 @@
         <li class="field comp-setting-entry is-set">
             <div class="wrapper-comp-setting">
                 <label class="label setting-label" for="icon_class">{% trans field_icon_class.display_name %}</label>
-                <select class="input setting-input" name="icon_class" data-d="{{ scorm_xblock.icon_class }}">
-                    <option value="archivos" {% if scorm_xblock.icon_class == "archivos" %}selected{% endif %}>Archivos</option>
-                    <option value="ebook" {% if scorm_xblock.icon_class == "ebook" %}selected{% endif %}>e-book</option>
-                    <option value="exam" {% if scorm_xblock.icon_class == "exam" %}selected{% endif %}>Examtaker</option>
-                    <option value="guia" {% if scorm_xblock.icon_class == "guia" %}selected{% endif %}>Guia</option>
-                    <option value="game" {% if scorm_xblock.icon_class == "game" %}selected{% endif %}>Juegos</option>
-                    <option value="partialtest" {% if scorm_xblock.icon_class == "partialtest" %}selected{% endif %}>Partialtest</option>
-                    <option value="video" {% if scorm_xblock.icon_class == "video" %}selected{% endif %}>Video</option>
+                <select class="input setting-input" name="icon_class">
+                    <option value="ib-archivos" {% if scorm_xblock.icon_class == "ib-archivos" %}selected{% endif %}>Archivos</option>
+                    <option value="ib-ebook" {% if scorm_xblock.icon_class == "ib-ebook" %}selected{% endif %}>e-book</option>
+                    <option value="ib-examtaker" {% if scorm_xblock.icon_class == "ib-examtaker" %}selected{% endif %}>Examtaker</option>
+                    <option value="ib-game" {% if scorm_xblock.icon_class == "ib-game" %}selected{% endif %}>Juegos</option>
+                    <option value="ib-info" {% if scorm_xblock.icon_class == "ib-info" %}selected{% endif %}>Info</option>
+                    <option value="ib-partialtest" {% if scorm_xblock.icon_class == "ib-partialtest" %}selected{% endif %}>Partialtest</option>
+                    <option value="ib-video" {% if scorm_xblock.icon_class == "ib-video" %}selected{% endif %}>Video</option>
+                    <option value="ib-videotutoriales" {% if scorm_xblock.icon_class == "ib-videotutoriales" %}selected{% endif %}>Video tutoriales</option>
                 </select>
             </div>
             <span class="tip setting-help">{% trans field_icon_class.help %}</span>

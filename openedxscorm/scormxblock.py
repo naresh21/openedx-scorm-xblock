@@ -127,7 +127,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
     icon_class = String(
         display_name=_("Icon"),
         help=_("Select icon for the lesson"),
-        default="video",
+        default="ib-video",
         scope=Scope.settings
     )
     width = Integer(

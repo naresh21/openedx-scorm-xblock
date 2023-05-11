@@ -3,13 +3,28 @@
 <div class="scorm-xblock">
     {% if index_page_url %}
 
-    {% if scorm_xblock.has_score %}
-    <p>
-        <span class="grade">Progreso {{ grade }}%</span>
-    </p>
-    {% endif %}
-
     <div class="scorm-content">
+        <div class="fullscreen-controls bootstrap-iso">
+            <div class="d-flex mb-2">
+                <div class="text-left">
+                    {% if scorm_xblock.has_score %}
+                    <span class="font-weight-bold grade">Progreso {{ grade }}%</span>
+                    {% endif %}
+                </div>
+                <div class="text-right" style="flex: 1;">
+                    <button class="btn btn-sm btn-outline-info enter-fullscreen">
+                        <i class="fa fa-expand mr-2"></i> Pantalla completa
+                    </button>
+                    <button class="mr-4 my-2 btn btn-sm btn-outline-danger exit-fullscreen">
+                        <i class="fa fa-expand mr-2"></i> Abandonar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup-wrapper">
+            <button class="popup-launcher">{% trans "Launch unit in new window" %} <span class="icon fa fa-external-link"></span></button>
+        </div>
         <iframe
             class="scorm-embedded"
             src="{{ index_page_url }}"
@@ -21,7 +36,7 @@
     <p>{{ message }}</p>
     {% endif %}
     {% if can_view_student_reports %}
-    <div class="scorm-reports">
+    <div class="scorm-reports hidden">
         <button class="view-reports reports-togglable">
             {% trans "View SCORM reports" %}
         </button>

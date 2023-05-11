@@ -1,4 +1,9 @@
 /* CSS for ScormXBlock */
+button, button:hover, button:focus, button:active {
+    background-image: none !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
 .scorm-xblock .scorm-embedded {
     border: none;
 }
@@ -40,17 +45,16 @@
     z-index: 10000;
     background-color: #ffffff;
 }
-.scorm-xblock .fullscreen-controls {
-    padding-bottom: 20px;
-}
 .scorm-xblock.fullscreen-enabled .fullscreen-controls {
-    padding: 20px;
+    background-color: #4b4e51;
+    padding-left: 10px;
+    padding-top: 5px;
 }
 .scorm-xblock button.exit-fullscreen {
     display: none;
 }
 .scorm-xblock.fullscreen-enabled button.exit-fullscreen {
-    display: block;
+    display: inline-block;
 }
 .scorm-xblock.fullscreen-enabled button.enter-fullscreen,
 .scorm-xblock.fullscreen-enabled .scorm-reports {

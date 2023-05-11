@@ -4,6 +4,16 @@ button, button:hover, button:focus, button:active {
     text-shadow: none !important;
     box-shadow: none !important;
 }
+.text-right {text-align: right !important;}
+.d-flex {
+    display: flex !important;
+}
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+.mb-2, .my-2 {
+    margin-bottom: 0.5rem !important;
+}
 .scorm-xblock .scorm-embedded {
     border: none;
 }

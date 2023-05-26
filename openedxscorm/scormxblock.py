@@ -106,7 +106,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
 
     lesson_score = Float(scope=Scope.user_state, default=0)
     weight = Float(
-        default=1,
+        default=100,
         display_name=_("Weight"),
         help=_("Weight/Maximum grade"),
         scope=Scope.settings,
@@ -173,12 +173,8 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
 
     def author_view(self, context=None):
         context = context or {}
-        if not self.index_page_path:
-            context[
-                "message"
-            ] = "Click 'Edit' to modify this module and upload a new SCORM package."
-        context["can_view_student_reports"] = True
-        return self.student_view(context=context)
+        template = self.render_template("static/html/author.html", context)
+        return Fragment(template)
 
     def student_view(self, context=None):
         student_context = {

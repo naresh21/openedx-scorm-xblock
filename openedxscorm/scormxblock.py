@@ -114,6 +114,14 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         default=True,
         scope=Scope.settings,
     )
+    show_progress = Boolean(
+        display_name=_("Show progress"),
+        help=_(
+            "Select False for partial test and examtaker to hide progress from the user"
+        ),
+        default=True,
+        scope=Scope.settings,
+    )
 
     # See the Scorm data model:
     # https://scorm.com/scorm-explained/technical-scorm/run-time/
@@ -204,6 +212,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         studio_context = {
             "field_display_name": self.fields["display_name"],
             "field_has_score": self.fields["has_score"],
+            "field_show_progress": self.fields["show_progress"],
             "field_width": self.fields["width"],
             "field_height": self.fields["height"],
             "field_popup_on_launch": self.fields["popup_on_launch"],
@@ -230,6 +239,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         self.width = parse_int(request.params["width"], None)
         self.height = parse_int(request.params["height"], None)
         self.has_score = request.params["has_score"] == "1"
+        self.show_progress = request.params["show_progress"] == "1"
         self.popup_on_launch = request.params["popup_on_launch"] == "1"
         self.icon_class = request.params["icon_class"]
 

@@ -51,6 +51,17 @@
 
         <li class="field comp-setting-entry is-set">
             <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="show_progress">{% trans field_show_progress.display_name %}</label>
+                <select name="show_progress" id="show_progress">
+                    <option value="1" {% if scorm_xblock.show_progress %}selected{% endif %}>{% trans "True" %}</option>
+                    <option value="0" {% if not scorm_xblock.show_progress %}selected{% endif %}>{% trans "False" %}</optio>
+                </select>
+            </div>
+            <span class="tip setting-help">{% trans field_show_progress.help %}</span>
+        </li>
+
+        <li class="field comp-setting-entry is-set">
+            <div class="wrapper-comp-setting">
                 <label class="label setting-label" for="width">{% trans field_width.display_name %}</label>
                 <input class="input setting-input" name="width" id="width" value="{{ scorm_xblock.width }}" type="number" />
             </div>

@@ -231,7 +231,7 @@ function ScormXBlock(runtime, element, settings) {
                     var result = results[i];
                     if (typeof result.grade != "undefined") {
                         // Properly display at most two decimals
-                        $(element).find(".grade").html("Progreso "+Math.round(result.grade * 100)+"%");
+                        $(element).find(".grade").html("Progreso "+Math.round(result.grade)+"%");
                     }
                     $(element).find(".completion-status").html(result.completion_status);
                 }

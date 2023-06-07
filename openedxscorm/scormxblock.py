@@ -105,12 +105,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
     success_status = String(scope=Scope.user_state, default="unknown")
 
     lesson_score = Float(scope=Scope.user_state, default=0)
-    weight = Float(
-        default=100,
-        display_name=_("Weight"),
-        help=_("Weight/Maximum grade"),
-        scope=Scope.settings,
-    )
+    weight = 100.0
     has_score = Boolean(
         display_name=_("Scored"),
         help=_(
@@ -180,7 +175,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         student_context = {
             "index_page_url": self.index_page_url,
             "completion_status": self.lesson_status,
-            "grade": round(self.get_grade() * 100),
+            "grade": round(self.get_grade()),
             "can_view_student_reports": self.can_view_student_reports,
             "scorm_xblock": self,
         }
@@ -209,7 +204,6 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         studio_context = {
             "field_display_name": self.fields["display_name"],
             "field_has_score": self.fields["has_score"],
-            "field_weight": self.fields["weight"],
             "field_width": self.fields["width"],
             "field_height": self.fields["height"],
             "field_popup_on_launch": self.fields["popup_on_launch"],
@@ -236,7 +230,6 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         self.width = parse_int(request.params["width"], None)
         self.height = parse_int(request.params["height"], None)
         self.has_score = request.params["has_score"] == "1"
-        self.weight = parse_float(request.params["weight"], 1)
         self.popup_on_launch = request.params["popup_on_launch"] == "1"
         self.icon_class = request.params["icon_class"]
 

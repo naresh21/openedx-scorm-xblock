@@ -304,7 +304,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
             root_depth = -1
             # Find root folder which contains imsmanifest.xml
             for zipinfo in zipinfos:
-                if os.path.basename(zipinfo.filename) == "imsmanifest.xml":
+                if os.path.basename(zipinfo.filename) in ("imsmanifest.xml", "index.html"):
                     depth = len(os.path.split(zipinfo.filename))
                     if depth < root_depth or root_depth < 0:
                         root_path = os.path.dirname(zipinfo.filename)
@@ -472,7 +472,13 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
         """
         Update version and index page path fields.
         """
-        imsmanifest_path = self.find_file_path("imsmanifest.xml")
+        try:
+            imsmanifest_path = self.find_file_path("imsmanifest.xml")
+        except:
+            self.index_page_path = self.find_relative_file_path("index.html")
+            self.scorm_version = "SCORM_2004"
+            return
+
         imsmanifest_file = self.storage.open(imsmanifest_path)
         tree = ET.parse(imsmanifest_file)
         imsmanifest_file.seek(0)

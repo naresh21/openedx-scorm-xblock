@@ -51,13 +51,13 @@
 
         <li class="field comp-setting-entry is-set">
             <div class="wrapper-comp-setting">
-                <label class="label setting-label" for="show_progress">{% trans field_show_progress.display_name %}</label>
-                <select name="show_progress" id="show_progress">
-                    <option value="1" {% if scorm_xblock.show_progress %}selected{% endif %}>{% trans "True" %}</option>
-                    <option value="0" {% if not scorm_xblock.show_progress %}selected{% endif %}>{% trans "False" %}</optio>
+                <label class="label setting-label" for="is_exam">{% trans field_is_exam.display_name %}</label>
+                <select name="is_exam" id="is_exam">
+                    <option value="1" {% if scorm_xblock.is_exam %}selected{% endif %}>{% trans "True" %}</option>
+                    <option value="0" {% if not scorm_xblock.is_exam %}selected{% endif %}>{% trans "False" %}</optio>
                 </select>
             </div>
-            <span class="tip setting-help">{% trans field_show_progress.help %}</span>
+            <span class="tip setting-help">{% trans field_is_exam.help %}</span>
         </li>
 
         <li class="field comp-setting-entry is-set">

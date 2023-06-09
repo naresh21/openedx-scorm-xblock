@@ -7,7 +7,7 @@
         <div class="fullscreen-controls bootstrap-iso">
             <div class="d-flex mb-2">
                 <div class="text-left">
-                    {% if scorm_xblock.has_score and scorm_xblock.show_progress %}
+                    {% if scorm_xblock.has_score and not scorm_xblock.is_exam %}
                     <span class="font-weight-bold grade">Progreso {{ grade }}%</span>
                     {% endif %}
                 </div>

@@ -7,7 +7,7 @@ function ScormStudioXBlock(runtime, element) {
         var file_data = $(element).find('#scorm_file').prop('files')[0];
         var display_name = $(element).find('input[name=display_name]').val();
         var has_score = $(element).find('select[name=has_score]').val();
-        var show_progress = $(element).find('select[name=show_progress]').val();
+        var is_exam = $(element).find('select[name=is_exam]').val();
         var icon_class = $(element).find('select[name=icon_class]').val();
         var width = $(element).find('input[name=width]').val();
         var height = $(element).find('input[name=height]').val();
@@ -16,7 +16,7 @@ function ScormStudioXBlock(runtime, element) {
         form_data.append('file', file_data);
         form_data.append('display_name', display_name);
         form_data.append('has_score', has_score);
-        form_data.append('show_progress', show_progress);
+        form_data.append('is_exam', is_exam);
         form_data.append('icon_class', icon_class);
         form_data.append('width', width);
         form_data.append('height', height);

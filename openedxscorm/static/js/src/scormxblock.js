@@ -1,5 +1,4 @@
 function ScormXBlock(runtime, element, settings) {
-
     // Fullscreen
     function initFullscreen() {
         const xblock = $(element).find(".scorm-xblock").get(0);
@@ -243,10 +242,10 @@ function ScormXBlock(runtime, element, settings) {
         });
     };
 
-    $(function ($) {
-        initScorm(settings.scorm_version, GetValue, SetValue);
-        initFullscreen();
-        initPopupWindow();
-        initReports();
-    });
+    //$(function ($) {
+    initScorm(settings.scorm_version, GetValue, SetValue);
+    initFullscreen();
+    initPopupWindow();
+        // initReports();
+    //});
 }

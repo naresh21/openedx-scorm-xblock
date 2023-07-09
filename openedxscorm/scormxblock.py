@@ -344,7 +344,11 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
             # is stored in the base folder.
             folder = self.extract_folder_base_path
             logger.warning("Serving SCORM content from old-style path: %s", folder)
-        return self.storage.url(os.path.join(folder, self.index_page_path))
+        full_url = self.storage.url(os.path.join(folder, self.index_page_path))
+        if "https://files." in full_url:
+            full_url = full_url.replace("https://files.", "https://")
+            full_url = full_url.replace(".com/openedx", ".com/files/openedx")
+        return full_url
 
     @property
     def extract_folder_path(self):

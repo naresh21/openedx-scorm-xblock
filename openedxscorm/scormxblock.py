@@ -201,7 +201,7 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
                 "popup_on_launch": self.popup_on_launch,
                 "popup_width": self.width or 800,
                 "popup_height": self.height or 800,
-                "scorm_data": not self.is_exam and self.scorm_data or {},
+                "scorm_data": {},
             },
         )
         return frag
@@ -422,15 +422,18 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
             if self.has_score:
                 self.publish_grade()
             context.update({"grade": self.get_grade()})
-        if completion_percent is not None:
-            self.emit_completion(completion_percent)
         if completion_status:
             self.lesson_status = completion_status
             context.update({"completion_status": completion_status})
         if success_status:
             self.success_status = success_status
         if completion_status == "completed":
-            self.emit_completion(1)
+            completion_percent = 1
+        elif completion_percent is None:
+            completion_percent = self.lesson_score
+        if completion_percent is not None:
+            self.emit_completion(completion_percent)
+
 
         return context
 

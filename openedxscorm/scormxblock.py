@@ -5,6 +5,8 @@ import logging
 import re
 import xml.etree.ElementTree as ET
 import zipfile
+import requests
+import mimetypes
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
@@ -15,6 +17,7 @@ from django.utils.module_loading import import_string
 from webob import Response
 import pkg_resources
 from six import string_types
+import urllib.request
 
 from web_fragments.fragment import Fragment
 from xblock.core import XBlock
@@ -205,6 +208,31 @@ class ScormXBlock(XBlock, CompletableXBlockMixin):
             },
         )
         return frag
+
+    @XBlock.handler
+    def assets_proxy(self, request, suffix):
+        """
+        Proxy view for serving assets. It receives a request with the path to the asset to serve, generates a pre-signed
+        URL to access the content in the AWS S3 bucket, and returns a redirect response to the pre-signed URL.
+        Parameters:
+        ----------
+        request : django.http.request.HttpRequest
+            HTTP request object containing the path to the asset to serve.
+        suffix : str
+            The part of the URL after 'assets_proxy/', i.e., the path to the asset to serve.
+        Returns:
+        -------
+        Response object containing the content of the requested file with the appropriate content type.
+        """
+        file_name = os.path.basename(suffix)
+        signed_url = self.storage.url(suffix)
+        file_type, _ = mimetypes.guess_type(file_name)
+        with urllib.request.urlopen(signed_url) as response:
+            file_content = response.read()
+
+        return Response(
+            file_content, content_type=file_type
+        )
 
     def studio_view(self, context=None):
         # Note that we cannot use xblockutils's StudioEditableXBlockMixin because we
